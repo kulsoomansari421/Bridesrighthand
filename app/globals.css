@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --clr-blush: #f6e6e7;
+  --clr-mauve: #8d7288;
+  --clr-sage: #879c89;
+  --clr-champagne: #edd4ad;
+  --clr-gold: #a67f4a;
+  --clr-cream: #f5ede6;
+  --clr-charcoal: #181310;
+  --clr-soft: #fbf4ee;
+  --background: var(--clr-cream);
+  --foreground: var(--clr-charcoal);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: var(--clr-cream);
+  --color-soft: var(--clr-soft);
+  --color-champagne: var(--clr-champagne);
+  --color-gold: var(--clr-gold);
+  --color-charcoal: var(--clr-charcoal);
+  --color-blush: var(--clr-blush);
+  --color-mauve: var(--clr-mauve);
+  --color-sage: var(--clr-sage);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--clr-cream);
+    color: var(--clr-charcoal);
+    font-family: var(--font-sans), system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-serif), Georgia, serif;
+  }
+
+  p,
+  a,
+  li {
+    font-family: var(--font-sans), system-ui, sans-serif;
+  }
+
+  ::selection {
+    background: rgba(166, 127, 74, 0.2);
+    color: var(--clr-charcoal);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .polka-dots {
+    background-image: radial-gradient(circle, rgba(143, 117, 119, 0.18) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  .soft-shadow {
+    box-shadow: 0 30px 80px rgba(31, 26, 28, 0.06);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-[#bc9b65] px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-white shadow-[0_10px_25px_rgba(188,149,94,0.15)] transition duration-200 ease-in-out sm:px-8 sm:py-4 sm:text-sm;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-[#dbcab4] bg-white/90 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-[#463a34] transition duration-200 ease-in-out sm:px-8 sm:py-4 sm:text-sm;
+  }
+
+  .btn-secondary:hover {
+    background: #ffffff;
+  }
+
+}
+
+@layer utilities {
+  .responsive-page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-12;
+  }
+}
+@keyframes luxuryScrollZoom {
+  0% {
+    transform: scale(1.15);
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  60% {
+    opacity: 0.7;
+    filter: blur(4px);
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
 }
