@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Playfair_Display, Allura } from "next/font/google";
 import "./globals.css";
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaTiktok } from "react-icons/fa";
 import { Phone, Mail } from "lucide-react";
+import Navbar from "./components/Navbar";
 import Image from "next/image";
 
 const inter = Inter({
@@ -21,6 +22,10 @@ export const metadata = {
   description:
     "Luxury bridal concierge services offering calm, confident support and polished wedding day coordination for modern couples.",
 };
+const allura = Allura({
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export default function RootLayout({ children }) {
   return (
@@ -33,69 +38,64 @@ export default function RootLayout({ children }) {
           <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-[radial-gradient(circle_at_top_left,_rgba(166,127,74,0.16),transparent_42%)]" />
 
           <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col px-4 py-4 sm:px-6 lg:px-12">
-            <header className="sticky top-0 z-50 -mx-4 border-b border-white/20 bg-white/35 backdrop-blur-md sm:-mx-6 lg:-mx-12">
-              <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-12">
-                <Link href="/" className="relative h-[48px] w-[142px] shrink-0 overflow-hidden sm:h-[58px] sm:w-[180px]">
-                  <Image
-                    src="/BridesrightLogo.png"
-                    alt="BridesRight logo"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 640px) 142px, 180px"
-                  />
-                </Link>
+            
+            {/* Responsive Navbar */}
+            <Navbar />
 
-                <nav className="hidden items-center gap-8 lg:flex">
-                  {[
-                    { label: "Home", href: "/" },
-                    { label: "About", href: "/about" },
-                    { label: "Services", href: "/services" },
-                    { label: "Contact", href: "/contact" },
-                  ].map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      className="text-[11px] uppercase tracking-[0.3em] text-[#4d413b] hover:text-[#8c6a3f]"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </nav>
-
-                <Link
-                  href="/contact"
-                  className="inline-flex h-11 items-center justify-center bg-[#a67f4a] px-4 text-[9px] uppercase tracking-[0.22em] text-white transition hover:opacity-90 sm:px-6 sm:text-[10px]"
-                >
-                  Book Consultation
-                </Link>
-              </div>
-            </header>
-
-            <main className="flex-1 pt-8 sm:pt-10">{children}</main>
+            <main className="flex-1 pt-8 sm:pt-10">
+              {children}
+            </main>
 
             <footer className="border-t border-[#e0d1bf] bg-[#f3ebe3] px-4 py-16 sm:px-6 lg:px-12 lg:py-20">
-              <div className="mx-auto grid max-w-7xl gap-12 text-center md:grid-cols-3 md:text-left">
+            <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-[1.4fr_1fr_1fr]">
                 <div className="flex flex-col items-center md:items-start">
-                  <div className="relative h-[48px] w-[180px] overflow-hidden sm:w-[220px]">
-                    <Link href="/" className="absolute inset-0">
-                      <Image
-                        src="/BridesrightLogo.png"
-                        alt="BridesRight logo"
-                        fill
-                        className="object-contain"
-                        sizes="(max-width: 640px) 180px, 220px"
-                      />
-                    </Link>
-                  </div>
+   
+  <div className="flex flex-col items-center md:items-start">
 
-                  <p className="mt-6 max-w-sm text-[14px] leading-7 text-[#4f433d]">
-                    Calm. Supported. Present.
-                  </p>
+  <div className="relative h-[120px] w-[420px] sm:h-[140px] sm:w-[500px]">
+    <Link href="/" className="absolute inset-0">
+      <Image
+        src="/BridesrightLogo.png"
+        alt="BridesRight logo"
+        fill
+        priority
+        className="object-contain object-left"
+        sizes="(max-width:768px) 420px, 500px"
+      />
+    </Link>
+  </div>
 
-                  <div className="mt-7 flex gap-4 text-[#6d5b4e]">
-                    <FaFacebook size={18} />
-                    <FaInstagram size={18} />
-                  </div>
+  <p className="mt-2 max-w-sm text-[15px] leading-7 text-[#5c514b]">
+    Calm. Supported. Present.
+  </p>
+
+  <div className="mt-6 flex gap-5 text-[#8f6c41]">
+   <a
+  href="https://www.instagram.com/bridesrighthandca/?hl=en"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <FaInstagram />
+</a>
+
+<a
+  href="https://www.facebook.com/profile.php?id=61574286489478"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <FaFacebookF />
+</a>
+
+<a
+  href="https://www.tiktok.com/@bridesrighthand"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <FaTiktok />
+</a>
+</div>
+</div>
+               
                 </div>
 
                 <div>
@@ -124,15 +124,35 @@ export default function RootLayout({ children }) {
 
                     <div className="flex items-center justify-center gap-3 md:justify-start">
                       <Mail size={16} />
-                      <span className="text-[14px]">bridesrighthandca@gmail.com</span>
+                      <span className="text-[14px]">
+                        bridesrighthandca@gmail.com
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-10 text-center text-[12px] uppercase tracking-[0.35em] text-[#8b7768]">
-                powered by metaronics
-              </div>
+<div className="mt-10 flex flex-col items-end">
+  <div className="text-right">
+    <h2
+      className={`${playfair.className} text-[clamp(1.5rem,3vw,2.2rem)] leading-tight text-[#433631]`}
+    >
+      Your Day
+    </h2>
+
+    <span
+      className={`${allura.className} block text-[clamp(2rem,5vw,3.5rem)] leading-none text-[#bc9b65]`}
+    >
+      Beautifully Supported
+    </span>
+  </div>
+
+  <p className="mt-8 text-center text-[12px] uppercase tracking-[0.35em] text-[#8b7768] self-center">
+    Powered by Metaronics
+  </p>
+</div>
+
+           
             </footer>
           </div>
         </div>

@@ -253,6 +253,8 @@ export default function ContactPage() {
     </div>
   </AnimatedSection>
 </section>
+
+
     </div>
   );
 }

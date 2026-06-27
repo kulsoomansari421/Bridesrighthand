@@ -41,7 +41,7 @@ export default function ImageSlider() {
 
   return (
     <div className="relative overflow-hidden rounded-[2rem] bg-[#f9f4ef] shadow-[0_30px_90px_rgba(17,15,14,0.08)]">
-      <div className="relative h-[360px] w-full sm:h-[520px] lg:h-[680px]">
+      <div className="relative h-[680px] w-full sm:h-[720px]">
         {slides.map((slide, index) => (
           <div
             key={slide.src}
@@ -57,18 +57,21 @@ export default function ImageSlider() {
             />
 
             {/* Badge overlay on each slide */}
-            <div className="absolute bottom-4 left-4 rounded-3xl bg-white px-4 py-3 shadow-xl sm:bottom-6 sm:left-6 sm:px-6 sm:py-4">
-              <p className={`${allura.className} text-[24px] text-[#c7a06a] sm:text-[28px]`}>
+            <div className="absolute bottom-6 left-6 rounded-3xl bg-white px-6 py-4 shadow-xl">
+              <p
+                className={`${allura.className} text-[28px] text-[#c7a06a]`}
+              >
                 Trusted
               </p>
 
-              <p className="mt-1 text-[9px] uppercase tracking-[0.28em] text-[#6f625a] sm:text-[10px]">
+              <p className="mt-1 text-[10px] uppercase tracking-[0.3em] text-[#6f625a]">
                 By 250+ Brides
               </p>
             </div>
           </div>
         ))}
       </div>
+
       <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-3 rounded-full bg-black/10 px-3 py-2 backdrop-blur-sm">
         {slides.map((_, index) => (
           <button

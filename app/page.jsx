@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import ImageSlider from "./components/ImageSlider";
 import {
   Cormorant_Garamond,
   Montserrat,
@@ -89,6 +88,29 @@ const testimonials = [
     quote:
       "The most thoughtful, calming presence on the most important day of my life.",
     name: "Vineyard Wedding, 2023",
+  },
+];
+
+const features = [
+  {
+    title: "Personalized Support",
+    description:
+      "Every wedding is different, and your support should be too. We tailor our services to fit your vision, priorities, and needs.",
+  },
+  {
+    title: "Calm Under Pressure",
+    description:
+      "From timelines to unexpected moments, we handle the moving pieces quietly and professionally so you can stay present.",
+  },
+  {
+    title: "Detail-Focused Care",
+    description:
+      "We believe the little things matter. Thoughtful preparation and attention to detail help create a seamless experience.",
+  },
+  {
+    title: "Peace of Mind",
+    description:
+      "You deserve more than coordination — you deserve to fully experience your day knowing someone is looking out for you.",
   },
 ];
 
@@ -181,8 +203,7 @@ export default function Home() {
           </h2>
 
           <p className="mt-6 text-[15px] leading-8 text-[#5b4d46]">
-            Three thoughtfully designed experiences each crafted to give you
-            back the one thing money usually cannot buy: your wedding day.
+           Three thoughtfully designed experiences, each created to help you be fully present on your wedding day”; in place of the one that says money can’t buy.
           </p>
         </div>
 
@@ -243,9 +264,15 @@ export default function Home() {
       <section className="bg-[#f5ede6] px-4 py-20 sm:px-6 lg:px-12 lg:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
           
-          <div className="relative">
-            <ImageSlider />
-          </div>
+         <div className="relative overflow-hidden rounded-[2.5rem] shadow-[0_30px_80px_rgba(0,0,0,0.08)]">
+  <Image
+    src="/whychooseus.jpeg"
+    alt="Bride enjoying her wedding day with concierge support"
+    width={800}
+    height={1000}
+    className="h-full w-full object-cover transition duration-700 hover:scale-105"
+  />
+</div>
 
           <div>
             <p className="text-[10px] uppercase tracking-[0.45em] text-[#8f6c41]">
@@ -262,29 +289,28 @@ export default function Home() {
               every moment.
             </span>
 
-            <div className="mt-12 grid gap-6 sm:grid-cols-2">
-              {[
-                " Personalized Support",
-                " Calm Under Pressure",
-                "Detail-Focused Care",
-                "Peace of Mind",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[2rem] border border-[#eadfd1] bg-[#fbf7f2] p-7"
-                >
-                  <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-full border border-[#d9c3a5] text-[#bc9b65]">
-                    ✦
-                  </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+  {features.map((feature) => (
+    <div
+      key={feature.title}
+      className="rounded-[2rem] border border-[#eadfd1] bg-[#fbf7f2] p-7 transition-all duration-300 hover:shadow-xl"
+    >
+      <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-full border border-[#d9c3a5] text-[#bc9b65]">
+        ✦
+      </div>
 
-                  <h3 className={`${bodoni.className} text-[clamp(1.5rem,4vw,1.75rem)] text-[#453630]`}>
-                    {item}
-                  </h3>
+      <h3
+        className={`${bodoni.className} text-[clamp(1.5rem,4vw,1.75rem)] text-[#453630]`}
+      >
+        {feature.title}
+      </h3>
 
-                  <p className="mt-4 text-[14px] leading-7 text-[#72645c]">
-  You deserve more than coordination — you deserve to fully experience your day knowing someone is looking out for you.                 </p>
-                </div>
-              ))}
+      <p className="mt-4 text-[14px] leading-7 text-[#72645c]">
+        {feature.description}
+      </p>
+    </div>
+  ))}
+
             </div>
           </div>
         </div>
@@ -335,6 +361,8 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      
 
       {/* GALLERY */}
       <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
