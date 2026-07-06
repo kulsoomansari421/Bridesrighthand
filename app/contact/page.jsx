@@ -1,5 +1,8 @@
+"use client";
 import Link from "next/link";
 import AnimatedSection from "../components/AnimatedSection";
+import { useState } from "react";
+
 import {
   Cormorant_Garamond,
   Montserrat,
@@ -21,13 +24,70 @@ const allura = Allura({
   weight: ["400"],
 });
 
-export const metadata = {
-  title: "Contact | Bride’s Right Hand",
-  description:
-    "Reach out to Bride’s Right Hand to begin your luxury bridal concierge experience.",
-};
+
 
 export default function ContactPage() {
+
+const [form, setForm] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  date: "",
+  venue: "",
+  message: "",
+});
+
+const [status, setStatus] = useState("idle");
+const [errorMsg, setErrorMsg] = useState("");
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  setForm((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  setStatus("loading");
+  setErrorMsg("");
+
+  try {
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(form),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error(data.error || "Something went wrong.");
+    }
+
+    setStatus("success");
+
+    setForm({
+      name: "",
+      email: "",
+      phone: "",
+      date: "",
+      venue: "",
+      message: "",
+    });
+
+  } catch (err) {
+    setStatus("error");
+    setErrorMsg(err.message || "Failed to send inquiry.");
+  }
+};
+
+
   return (
     <div className={`${montserrat.className} bg-[#f5ede6] overflow-hidden`}>
 
@@ -80,7 +140,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <form className="space-y-6">
+     <form onSubmit={handleSubmit} className="space-y-6">
 
           {/* ROW 1 */}
           <div className="grid gap-5 sm:grid-cols-2">
@@ -91,6 +151,10 @@ export default function ContactPage() {
               </label>
 
               <input
+              name="name"
+value={form.name}
+onChange={handleChange}
+required
                 type="text"
                 className="h-[52px] w-full border border-[#ece5dc] bg-[#f8f5f1] px-4 text-sm outline-none transition focus:border-[#bc9b65]"
               />
@@ -102,6 +166,10 @@ export default function ContactPage() {
               </label>
 
               <input
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                required
                 type="email"
                 className="h-[52px] w-full border border-[#ece5dc] bg-[#f8f5f1] px-4 text-sm outline-none transition focus:border-[#bc9b65]"
               />
@@ -117,6 +185,9 @@ export default function ContactPage() {
               </label>
 
               <input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
                 type="tel"
                 className="h-[52px] w-full border border-[#ece5dc] bg-[#f8f5f1] px-4 text-sm outline-none transition focus:border-[#bc9b65]"
               />
@@ -128,6 +199,10 @@ export default function ContactPage() {
               </label>
 
               <input
+              name="date"
+value={form.date}
+onChange={handleChange}
+required
                 type="date"
                 className="h-[52px] w-full border border-[#ece5dc] bg-[#f8f5f1] px-4 text-sm outline-none transition focus:border-[#bc9b65]"
               />
@@ -141,6 +216,9 @@ export default function ContactPage() {
             </label>
 
             <input
+              name="venue"
+              value={form.venue}
+              onChange={handleChange} 
               type="text"
               className="h-[52px] w-full border border-[#ece5dc] bg-[#f8f5f1] px-4 text-sm outline-none transition focus:border-[#bc9b65]"
             />
@@ -153,6 +231,10 @@ export default function ContactPage() {
             </label>
 
             <textarea
+            name="message"
+value={form.message}
+onChange={handleChange}
+required
               rows={5}
               placeholder="Share anything you'd like — your dreams, your worries, what you hope a concierge can hold for you..."
               className="w-full resize-none border border-[#ece5dc] bg-[#f8f5f1] px-4 py-4 text-sm leading-7 outline-none transition placeholder:text-[#8d8178]/60 focus:border-[#bc9b65]"
@@ -162,10 +244,32 @@ export default function ContactPage() {
           {/* BUTTON */}
           <button
             type="submit"
-            className="w-full h-[54px] bg-[#bc9b65] text-white text-[10px] uppercase tracking-[0.35em] shadow-[0_10px_25px_rgba(188,149,94,0.15)] hover:opacity-90 transition"
+            className="... disabled:opacity-50 disabled:cursor-not-allowed w-full h-[54px] bg-[#bc9b65] text-white text-[10px] uppercase tracking-[0.35em] shadow-[0_10px_25px_rgba(188,149,94,0.15)] hover:opacity-90 transition"
+          disabled={status === "loading"}
           >
-            Send Inquiry →
+
+      {status === "loading"
+  ? "Sending..."
+  : "Send Inquiry →"}
           </button>
+          
+          {status === "error" && (
+  <p className="mt-4 text-sm text-red-500">
+  
+{status === "error" && (
+  <p className="mt-4 text-sm text-red-500">
+    {errorMsg}
+  </p>
+)}
+
+{status === "success" && (
+  <p className="mt-4 text-sm text-green-600">
+    Thank you! Your inquiry has been sent successfully.
+  </p>
+)}
+
+  </p>
+)}
         </form>
       </div>
 
@@ -201,7 +305,7 @@ export default function ContactPage() {
                 </p>
 
                 <p className="text-[14px] text-[#4f433d]">
-                  hello@bridesrighthand.com
+                  info@briderighthand.net
                 </p>
               </div>
             </div>
@@ -215,7 +319,7 @@ export default function ContactPage() {
                 </p>
 
                 <p className="text-[14px] text-[#4f433d]">
-                  (123) 456-7890
+                  909-241-3850
                 </p>
               </div>
             </div>

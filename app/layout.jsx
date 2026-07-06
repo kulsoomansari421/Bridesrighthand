@@ -125,7 +125,7 @@ export default function RootLayout({ children }) {
                     <div className="flex items-center justify-center gap-3 md:justify-start">
                       <Mail size={16} />
                       <span className="text-[14px]">
-                        bridesrighthandca@gmail.com
+                       info@briderighthand.net
                       </span>
                     </div>
                   </div>

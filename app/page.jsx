@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import AnimatedSection from "./components/AnimatedSection";
 import {
   Cormorant_Garamond,
   Montserrat,
@@ -36,40 +37,63 @@ export const metadata = {
     "A luxury bridal concierge service offering calm, beautiful support, thoughtful vendor coordination, and seamless wedding day care.",
 };
 
+
 const packages = [
   {
-    label: "The Essentials",
     title: "Wedding-Day Concierge",
-    price: "$1,000",
+    subtitle: "THE ESSENTIALS",
+    price: "$1,200",
     features: [
-      "Pre-wedding consultation",
+      "Perfect for the bride who has planned her wedding but wants professional support to ensure everything runs smoothly.",
+      "Bridal consultation, service assessment, and planning and vendor checklist",
       "Customized wedding-day timeline",
-      "Vendor confirmations leading up to the day",
-      "Up to 8 hours onsite",
+      "Rehearsal attendance and coordination",
+      "Vendor confirmations leading up to the wedding",
+      "Coverage from ceremony preparation through reception milestones",
       "Personal bridal assistant",
+      "Bridal emergency kit on hand",
+      "Day-of timeline management",
+      "Wedding-day support and guidance",
     ],
+    highlight: false,
   },
   {
-    label: "Most Loved",
     title: "Extended Concierge Experience",
-    price: "$1,300",
+    subtitle: "MOST LOVED",
+    price: "$1,500",
     features: [
-      "Up to 10 hours onsite",
-      "Rehearsal coordination",
-      "Unlimited communication 2 weeks prior",
-      "Everything in Wedding-Day Concierge",
+      "For brides who want additional planning support and trusted vendor guidance before the big day.",
+      "Everything in Wedding-Day Concierge, plus:",
+      "Coverage from wedding and reception set-up to reception milestones",
+      "Vendor recommendations from Brides Right Hand portfolio",
+      "Vendor confirmations and follow-up",
+      "Unlimited communication beginning 2 weeks prior to the wedding",
+      "Extended day-of timeline management",
+      "Additional planning support leading up to the wedding",
     ],
+    highlight: true,
   },
   {
-    label: "The Full Experience",
-    title: "Full Bridal Support",
-    price: "$1,800",
+    title: "Full Bridal Support Experience",
+    subtitle: "THE FULL EXPERIENCE",
+    price: "$2,200",
     features: [
-      "Up to 12 hours onsite",
-      "Vendor coordination 30 days prior",
+      "A comprehensive concierge experience designed for brides who want a dedicated wedding partner from planning through the last dance.",
+      "Everything in Extended Concierge, plus:",
+      "Coverage from wedding and reception set up to Bride and Groom send off",
+      "Full vendor recommendations from Brides Right Hand portfolio",
+      "Vendor appointment scheduling",
+      "Venue and vendor tours, tastings and trial runs",
+      "Vendor coordination and communications",
+      "Full rehearsal coordination and management",
       "Setup assistance",
-      "Rehearsal attendance",
+      "Complete wedding-day management",
+      "Bridal Treat Package",
+      "Enhanced Bridal Emergency Kit",
+      "Unlimited communication throughout the planning process",
+      "Dedicated bridal concierge support from start to finish",
     ],
+    highlight: false,
   },
 ];
 
@@ -77,17 +101,17 @@ const testimonials = [
   {
     quote:
       "I genuinely couldn’t have imagined our day without her. Calm, organized, and so thoughtful.",
-    name: "Spring Wedding, 2025",
+    
   },
   {
     quote:
       "Every detail anticipated before I even knew I needed it. I was able to fully savor my wedding day.",
-    name: "Garden Ceremony, 2024",
+    
   },
   {
     quote:
       "The most thoughtful, calming presence on the most important day of my life.",
-    name: "Vineyard Wedding, 2023",
+  
   },
 ];
 
@@ -192,73 +216,93 @@ export default function Home() {
       </section>
 
       {/* PACKAGES */}
-      <section className="bg-[#f5eee8] px-4 py-20 sm:px-6 lg:px-12 lg:py-28">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-[10px] uppercase tracking-[0.45em] text-[#8f6c41]">
-            Our Packages
-          </p>
-
-          <h2 className={`${bodoni.className} mt-5 text-[clamp(2.5rem,7vw,3.5rem)] text-[#44352f]`}>
-            Curated For Every Bride
-          </h2>
-
-          <p className="mt-6 text-[15px] leading-8 text-[#5b4d46]">
-           Three thoughtfully designed experiences, each created to help you be fully present on your wedding day”; in place of the one that says money can’t buy.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-14 grid max-w-7xl gap-8 lg:grid-cols-3">
-          {packages.map((pkg, index) => (
-            <div
-              key={index}
-              className={`relative border border-[#eee2d5] bg-white p-8 sm:p-10 lg:p-12 ${
-                index === 1
-                  ? "lg:scale-[1.03] shadow-[0_20px_80px_rgba(17,15,14,0.08)]"
-                  : "shadow-[0_10px_40px_rgba(17,15,14,0.04)]"
-              }`}
-            >
-              {index === 1 && (
-                <div className="absolute right-0 top-0 bg-[#a67f4a] px-5 py-2 text-[10px] uppercase tracking-[0.3em] text-white">
-                  Most Loved
-                </div>
-              )}
-
-              <p className="text-[10px] uppercase tracking-[0.35em] text-[#8f6c41]">
-                {pkg.label}
-              </p>
-
-              <h3
-                className={`${bodoni.className} mt-5 text-[clamp(2rem,5vw,2.6rem)] leading-[1.1] text-[#453630]`}
-              >
-                {pkg.title}
-              </h3>
-
-              <p className="mt-7 text-[34px] font-light text-[#9a7746]">
-                {pkg.price}
-              </p>
-
-              <ul className="mt-10 space-y-4">
-                {pkg.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className="flex items-start gap-3 text-[14px] leading-7 text-[#4f433d]"
-                  >
-                    <span className="mt-[12px] h-[6px] w-[6px] rounded-full bg-[#9a7746]" />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href="/contact"
-                className="mt-12 inline-flex text-[10px] uppercase tracking-[0.3em] text-[#7f6240] hover:text-[#5f4c37]"
-              >
-                Learn More →
-              </Link>
+       <section className="px-4 pb-20 sm:px-6 lg:px-12 lg:pb-24">
+              <div className="max-w-7xl mx-auto grid gap-8 lg:grid-cols-3">
+      
+                {packages.map((pkg) => (
+                  <AnimatedSection key={pkg.title}>
+      <div
+        className={`relative flex flex-col h-[760px] overflow-hidden rounded-[32px] bg-white p-8 lg:p-10 ${
+          pkg.highlight
+            ? "border-2 border-[#bc9b65] shadow-[0_30px_80px_rgba(188,155,101,0.25)]"
+            : "border border-[#ede7df] shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
+        }`}
+      >
+                      {/* Badge */}
+                     {pkg.highlight && (
+        <>
+          <div className="absolute -top-0 left-1/2 -translate-x-1/2 z-50">
+        <span className="whitespace-nowrap rounded-full bg-gradient-to-r from-[#d6b07b] to-[#bc9b65] px-8 py-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-white shadow-xl">
+          ✦ Most Loved
+        </span>
+      </div>
+      
+          <div className="absolute right-[-42px] top-8 rotate-45 bg-[#bc9b65] px-12 py-1 text-[9px] uppercase tracking-[0.25em] text-white">
+            Best Value
+          </div>
+        </>
+      )}
+                      <p className="text-[10px] uppercase tracking-[0.35em] text-[#c2b4a2]">
+                        {pkg.subtitle}
+                      </p>
+      
+                      <h3
+                        className={`${cormorant.className} mt-4 text-[clamp(2rem,5vw,2.4rem)] leading-tight text-[#433631]`}
+                      >
+                        {pkg.title}
+                      </h3>
+      
+                     <div className="mt-8">
+        <p className="text-[clamp(3rem,8vw,4rem)] leading-none text-[#bc9b65]">
+          <span className={cormorant.className}>{pkg.price}</span>
+        </p>
+      
+        <p className="mt-2 text-[10px] uppercase tracking-[0.3em] text-[#a79a8a]">
+          Investment
+        </p>
+      </div>
+      
+      <div className="my-8 flex items-center gap-3">
+        <div className="h-px flex-1 bg-[#efe9e2]" />
+        <div className="h-2 w-2 rounded-full bg-[#bc9b65]" />
+        <div className="h-px flex-1 bg-[#efe9e2]" />
+      </div>
+      
+               <div className="flex-1 overflow-y-auto pr-2 custom-scroll">
+        <ul className="space-y-5">
+        {pkg.features.map((feature) => (
+          <li
+            key={feature}
+            className="flex items-start gap-3 text-[14px] leading-6 text-[#5c514b]"
+          >
+            <div className="mt-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#f6efe7] text-[#bc9b65]">
+              ✓
             </div>
-          ))}
-        </div>
-      </section>
+      
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+       </div>
+      
+      <Link
+        href="/contact"
+        className={`mt-6 inline-flex w-full items-center justify-center rounded-full py-4 text-[11px] uppercase tracking-[0.3em] ${
+          pkg.highlight
+            ? "bg-gradient-to-r from-[#d6b07b] to-[#bc9b65] text-white"
+            : "border border-[#e8dfd4] text-[#8b7458]"
+        }`}
+      >
+        Inquire →
+      </Link>
+                    </div>
+                  </AnimatedSection>
+                ))}
+              </div>
+            </section>
+      
+      
+      
 
       {/* FEATURES */}
       <section className="bg-[#f5ede6] px-4 py-20 sm:px-6 lg:px-12 lg:py-28">
