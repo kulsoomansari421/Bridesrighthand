@@ -252,24 +252,20 @@ required
   ? "Sending..."
   : "Send Inquiry →"}
           </button>
-          
           {status === "error" && (
-  <p className="mt-4 text-sm text-red-500">
-  
-{status === "error" && (
-  <p className="mt-4 text-sm text-red-500">
+  <p className="mt-4 text-sm text-red-500 text-center">
     {errorMsg}
   </p>
 )}
 
 {status === "success" && (
-  <p className="mt-4 text-sm text-green-600">
+  <p className="mt-4 text-sm text-green-600 text-center">
     Thank you! Your inquiry has been sent successfully.
   </p>
 )}
+          
 
-  </p>
-)}
+  
         </form>
       </div>
 
